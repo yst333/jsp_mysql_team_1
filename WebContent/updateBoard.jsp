@@ -92,6 +92,9 @@
 			}
 		}
 	%>
+	  <form action="index.jsp">
+         <input type="submit" value="처음으로">
+      </form>
 
 </body>
 </html>

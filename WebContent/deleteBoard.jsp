@@ -17,9 +17,10 @@
 </head>
 <body>
 <%
+	//드라이버 접속
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	System.out.println("드라이버 접속 성공!");
-	
+	//인터페이스 변수 선언 및 초기화
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	
@@ -29,16 +30,19 @@
 		String jdbcPass = "jspmysqlteampw";
 		System.out.println("DB 접속 성공!");
 		
+		//String boardNum에 대한 int타입변환 
 		int bn = Integer.parseInt(boardNum);
+		//Connection 생성
 		conn = DriverManager.getConnection(jdbcDriver,jdbcUser,jdbcPass);
 		
 		//delete from BOARD where BOARDNUM = 1;
 		String query = "delete from BOARD where BOARDNUM = ?";
+		//PreparedStatement 생성
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, bn);
-		
+		//쿼리문 실행
 		int resultDelete = pstmt.executeUpdate();
-		
+		//쿼리문 결과 출력
 		if(resultDelete==0){
 %>
 			<%=resultDelete %>는 존재하지 않는 데이터 입니다!			
@@ -70,6 +74,9 @@
 	   }
 	
 %>
+  <form action="index.jsp">
+         <input type="submit" value="처음으로">
+      </form>
 			
 </body>
 </html>
